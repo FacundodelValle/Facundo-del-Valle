@@ -5,9 +5,9 @@ const axios = require("axios");
 const fs = require("fs");
 
 const main = async () => {
-  const siteId = prompt("Indique en site va a realizar la busqueda ");
+  const siteId = prompt("Indique en que site va a realizar la busqueda ");
   const userId = prompt(
-    "Indique el id del usuario en que desea ver sus publicaciones "
+    "Indique el id del usuario que desea ver sus publicaciones "
   );
   try {
     const { data } = await axios.get(
