@@ -13,14 +13,9 @@ const main = async () => {
     const { data } = await axios.get(
       `https://api.mercadolibre.com/sites/${siteId}/search?seller_id=${userId}`
     );
-  } catch (err) {
-    console.log("No existe el usuario o el site");
-    return;
-  }
-  console.log(Object.keys(data));
-  const { results } = data;
-  const formated = await Promise.all(
-    results.map(async (result) => {
+      const { results } = data;
+      const formated = await Promise.all(
+      results.map(async (result) => {
       const { id, title, category_id } = result;
       const { data } = await axios.get(
         `https://api.mercadolibre.com/categories/${category_id}`
@@ -30,6 +25,10 @@ const main = async () => {
     })
   );
   fs.writeFileSync(`log-${userId}.json`, JSON.stringify(formated));
+  } catch (err) {
+    console.log("No existe el usuario o el site");
+    return;
+  }
 };
 
 main();
